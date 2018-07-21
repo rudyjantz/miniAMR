@@ -3,7 +3,7 @@ LD   = cc
 CPPFLAGS = -I.
 CFLAGS = -O3
 LDFLAGS =
-LDLIBS = -lm
+LDLIBS = -lm -lmpi
 
 EXEC = ma.x
 
@@ -18,7 +18,7 @@ $(EXEC): $(OBJS)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $<
 
 clean:
-	rm *.o ma.x
+	rm -f *.o ma.x
 
 # need dependencies
 

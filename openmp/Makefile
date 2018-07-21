@@ -18,7 +18,7 @@ $(EXEC): $(OBJS)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $<
 
 clean:
-	rm *.o ma.x
+	rm -f *.o ma.x
 
 # need dependencies
 

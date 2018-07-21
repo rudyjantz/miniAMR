@@ -3,7 +3,7 @@ LD   = cc
 CPPFLAGS = -I.
 CFLAGS = -O3 -fopenmp
 LDFLAGS =
-LDLIBS = -lm -lgomp
+LDLIBS = -lm -lgomp -lmpi
 
 EXEC = ma.x
 

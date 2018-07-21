@@ -1,0 +1,1382 @@
+pgcc -fast -mp -Minfo -c block.c
+split_blocks:
+     60, Loop not vectorized/parallelized: too deeply nested
+     62, Loop not vectorized/parallelized: too deeply nested
+     79, del_sorted_list inlined, size=22 (inline) file block.c (620)
+         623, Loop not vectorized/parallelized: potential early exits
+         631, Loop not vectorized/parallelized: not countable
+         633, Loop not vectorized: data dependency
+              Loop unrolled 8 times
+              Generated 2 prefetches in scalar loop
+     83, Loop not vectorized/parallelized: potential early exits
+    115, Loop not vectorized/parallelized: too deeply nested
+    116, Loop not vectorized/parallelized: potential early exits
+    141, add_sorted_list inlined, size=20 (inline) file block.c (603)
+         606, Loop not vectorized/parallelized: potential early exits
+         609, Loop not vectorized: data dependency
+              Loop unrolled 8 times
+         615, Loop not vectorized/parallelized: not countable
+    152, Loop not vectorized/parallelized: too deeply nested
+    155, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    170, Loop unrolled 2 times (completely unrolled)
+    171, Loop unrolled 2 times (completely unrolled)
+    179, Loop unrolled 2 times (completely unrolled)
+    180, Loop unrolled 2 times (completely unrolled)
+    196, Loop not vectorized/parallelized: contains call
+    219, Loop unrolled 2 times (completely unrolled)
+    220, Loop unrolled 2 times (completely unrolled)
+    233, Loop not vectorized/parallelized: contains call
+    248, Loop not vectorized/parallelized: contains call
+    267, Loop not vectorized/parallelized: contains call
+    310, Loop not vectorized/parallelized: contains call
+consolidate_blocks:
+    357, Loop not vectorized/parallelized: too deeply nested
+    358, Loop not vectorized/parallelized: too deeply nested
+    361, Loop not vectorized/parallelized: potential early exits
+    393, add_sorted_list inlined, size=20 (inline) file block.c (603)
+         606, Loop not vectorized/parallelized: potential early exits
+         609, Loop not vectorized: data dependency
+              Loop unrolled 8 times
+         615, Loop not vectorized/parallelized: not countable
+    399, Loop not vectorized/parallelized: too deeply nested
+    401, del_sorted_list inlined, size=22 (inline) file block.c (620)
+         623, Loop not vectorized/parallelized: potential early exits
+         631, Loop not vectorized/parallelized: not countable
+         633, Loop not fused: different loop trip count
+              Loop not vectorized: data dependency
+              Loop unrolled 8 times
+              Generated 2 prefetches in scalar loop
+    406, Loop not vectorized/parallelized: too deeply nested
+    409, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+    421, Loop not vectorized/parallelized: too deeply nested
+    448, Loop not vectorized/parallelized: contains call
+    479, Loop not vectorized/parallelized: too deeply nested
+    504, Loop not vectorized/parallelized: contains call
+    557, Loop not vectorized/parallelized: too deeply nested
+    584, Loop not vectorized/parallelized: contains call
+add_sorted_list:
+    606, Loop not vectorized/parallelized: potential early exits
+    609, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+    615, Loop not vectorized/parallelized: not countable
+del_sorted_list:
+    623, Loop not vectorized/parallelized: potential early exits
+    631, Loop not vectorized/parallelized: not countable
+    633, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+find_sorted_list:
+    643, Loop not vectorized/parallelized: potential early exits
+pgcc -fast -mp -Minfo -c check_sum.c
+check_sum:
+     46, Parallel region activated
+         Parallel loop activated with static block schedule
+         Loop not vectorized/parallelized: too deeply nested
+     51, Generated an alternate version of the loop
+         Generated vector simd code for the loop containing reductions
+         Generated a prefetch instruction for the loop
+         Generated vector simd code for the loop containing reductions
+         Generated a prefetch instruction for the loop
+     57, Begin critical section
+         End critical section
+         Barrier
+         Parallel region terminated
+pgcc -fast -mp -Minfo -c comm_block.c
+comm_proc:
+     48, Loop not vectorized/parallelized: contains call
+     55, Loop not vectorized/parallelized: not countable
+     65, Loop not vectorized/parallelized: not countable
+     78, Loop not vectorized/parallelized: contains call
+pgcc -fast -mp -Minfo -c comm.c
+comm:
+     51, Loop not vectorized/parallelized: too deeply nested
+     58, Loop not vectorized/parallelized: contains call
+         FMA (fused multiply-add) instruction(s) generated
+     78, Parallel region activated
+         Parallel loop activated with static block schedule
+         Loop not vectorized/parallelized: contains call
+     84, Barrier
+         Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    103, Parallel region activated
+         Parallel loop activated with static block schedule
+    109, on_proc_comm inlined, size=154 (inline) file comm.c (1399)
+         103, Loop not vectorized/parallelized: too deeply nested
+         105, Loop not vectorized/parallelized: too deeply nested
+        1417, Loop not vectorized: data dependency
+              Loop unrolled 16 times
+              Generated 2 prefetches in scalar loop
+        1438, Loop not vectorized: data dependency
+              Loop unrolled 16 times
+              Generated 2 prefetches in scalar loop
+        1463, Loop not vectorized: data dependency
+              Loop unrolled 4 times
+        1479, Loop not vectorized: data dependency
+              Loop unrolled 16 times
+              Generated 2 prefetches in scalar loop
+        1493, Loop not vectorized: data dependency
+              Loop unrolled 16 times
+              Generated 2 prefetches in scalar loop
+        1507, Loop not vectorized: data dependency
+              Loop unrolled 4 times
+    116, Loop not vectorized/parallelized: contains call
+    127, Loop not vectorized/parallelized: contains call
+    136, apply_bc inlined, size=85 (inline) file comm.c (1845)
+        1856, Memory copy idiom, loop replaced by call to __c_mcopy8
+        1863, Memory copy idiom, loop replaced by call to __c_mcopy8
+        1870, Loop not vectorized: data dependency
+              Loop unrolled 8 times
+              Generated 1 prefetches in scalar loop
+        1880, Memory copy idiom, loop replaced by call to __c_mcopy8
+        1887, Memory copy idiom, loop replaced by call to __c_mcopy8
+        1894, Loop not vectorized: data dependency
+              Loop unrolled 8 times
+              Generated 1 prefetches in scalar loop
+    145, Begin critical section
+         End critical section
+         Barrier
+         Parallel region terminated
+    157, Parallel region activated
+         Parallel loop activated with static block schedule
+         Loop not vectorized/parallelized: contains call
+    162, Barrier
+         Parallel region terminated
+    169, Loop not vectorized/parallelized: contains call
+pack_face:
+    200, Loop not fused: no successor loop
+    202, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    206, Loop not fused: no successor loop
+    208, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    229, Loop not fused: no successor loop
+    231, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    245, Loop not fused: no successor loop
+    247, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    250, Loop not fused: no successor loop
+    252, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    256, Loop not fused: no successor loop
+    258, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    279, Loop not fused: no successor loop
+    281, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    295, Loop not fused: no successor loop
+    297, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+    300, Loop not fused: no successor loop
+    302, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+    306, Loop not fused: no successor loop
+    308, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    329, Loop not fused: no successor loop
+    331, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+    346, Loop not fused: no successor loop
+    348, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    352, Loop not fused: no successor loop
+    359, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    367, Invariant if transformation
+         Loop not fused: complex flow graph
+         Loop not fused: no successor loop
+    373, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    390, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    415, Loop not fused: no successor loop
+    417, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    429, Loop not fused: no successor loop
+    431, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    435, Loop not fused: no successor loop
+    442, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    450, Invariant if transformation
+         Loop not fused: complex flow graph
+         Loop not fused: no successor loop
+    456, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    473, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    498, Loop not fused: no successor loop
+    500, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    514, Loop not fused: no successor loop
+    516, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+    520, Loop not fused: no successor loop
+    527, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    535, Invariant if transformation
+         Loop not fused: complex flow graph
+         Loop not fused: no successor loop
+    541, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    558, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    583, Loop not fused: no successor loop
+    585, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+    600, Loop not fused: no successor loop
+    602, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    606, Loop not fused: no successor loop
+    613, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    621, Invariant if transformation
+         Loop not fused: complex flow graph
+         Loop not fused: no successor loop
+    627, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    644, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    669, Loop not fused: no successor loop
+    673, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    677, Loop not fused: different loop trip count
+    680, Loop not fused: scalar dependence chain to sibling loop
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    686, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    694, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    709, Loop not fused: no successor loop
+    711, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    715, Loop not fused: no successor loop
+    722, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    730, Loop not fused: complex flow graph
+    736, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    753, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    778, Loop not fused: no successor loop
+    782, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    786, Loop not fused: different loop trip count
+    789, Loop not fused: scalar dependence chain to sibling loop
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    795, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    803, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    820, Loop not fused: no successor loop
+    822, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+    826, Loop not fused: no successor loop
+    833, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    841, Loop not fused: complex flow graph
+    847, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    864, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+    893, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    897, Loop not fused: different loop trip count
+    900, Loop not fused: scalar dependence chain to sibling loop
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    906, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+    914, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+unpack_face:
+    949, Loop not fused: no successor loop
+    951, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    955, Loop not fused: no successor loop
+    957, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 6 prefetches in scalar loop
+    978, Loop not fused: no successor loop
+    980, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    994, Loop not fused: no successor loop
+    996, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+    999, Loop not fused: no successor loop
+   1001, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+   1005, Loop not fused: no successor loop
+   1007, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 6 prefetches in scalar loop
+   1028, Loop not fused: no successor loop
+   1030, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+   1044, Loop not fused: no successor loop
+   1046, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+   1049, Loop not fused: no successor loop
+   1051, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+   1055, Loop not fused: no successor loop
+   1057, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+   1078, Loop not fused: no successor loop
+   1080, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+   1095, Loop not fused: no successor loop
+   1097, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+   1101, Loop not fused: no successor loop
+   1105, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 6 prefetches in scalar loop
+   1110, Loop not fused: different loop trip count
+   1114, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 6 prefetches in scalar loop
+   1126, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 6 prefetches in scalar loop
+   1148, Loop not fused: no successor loop
+   1150, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+   1162, Loop not fused: no successor loop
+   1164, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+   1168, Loop not fused: no successor loop
+   1172, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 6 prefetches in scalar loop
+   1177, Loop not fused: different loop trip count
+   1181, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 6 prefetches in scalar loop
+   1193, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 6 prefetches in scalar loop
+   1215, Loop not fused: no successor loop
+   1217, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+   1229, Loop not fused: no successor loop
+   1231, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+   1235, Loop not fused: no successor loop
+   1239, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+   1244, Loop not fused: different loop trip count
+   1248, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+   1260, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+   1282, Loop not fused: no successor loop
+   1284, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+   1299, Loop not fused: no successor loop
+   1301, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+   1319, Loop not fused: no successor loop
+   1321, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+   1333, Loop not fused: no successor loop
+   1335, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+   1353, Loop not fused: no successor loop
+   1355, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+   1367, Loop not fused: no successor loop
+   1369, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+   1389, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 2 prefetches in scalar loop
+on_proc_comm:
+   1415, Loop not fused: no successor loop
+   1417, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 2 prefetches in scalar loop
+   1436, Loop not fused: no successor loop
+   1438, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 2 prefetches in scalar loop
+   1461, Loop not fused: no successor loop
+   1463, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+   1477, Loop not fused: no successor loop
+   1479, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 2 prefetches in scalar loop
+   1491, Loop not fused: no successor loop
+   1493, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 2 prefetches in scalar loop
+   1507, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+on_proc_comm_diff:
+   1551, Loop not fused: no successor loop
+   1553, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+   1579, Loop not fused: no successor loop
+   1581, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+   1607, Loop not fused: no successor loop
+   1609, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+   1641, Loop not fused: no successor loop
+   1643, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+   1652, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+   1656, Invariant if transformation
+         Loop not fused: different loop trip count
+         Loop not fused: no successor loop
+   1665, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+   1681, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+   1690, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+   1713, Loop not fused: no successor loop
+   1715, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+   1724, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+   1728, Invariant if transformation
+         Loop not fused: different loop trip count
+         Loop not fused: no successor loop
+   1737, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+   1753, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+   1762, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 3 prefetches in scalar loop
+   1787, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+   1796, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+   1800, Invariant if transformation
+         Loop not fused: different loop trip count
+         Loop not fused: no successor loop
+   1809, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+   1825, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+   1834, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         Generated 1 prefetches in scalar loop
+apply_bc:
+   1856, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1863, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1868, Loop not fused: no successor loop
+   1870, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 1 prefetches in scalar loop
+   1880, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1887, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1894, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+         Generated 1 prefetches in scalar loop
+pgcc -fast -mp -Minfo -c comm_parent.c
+comm_parent:
+     48, Loop not vectorized/parallelized: contains call
+     54, Loop not vectorized/parallelized: not countable
+     66, Loop not vectorized/parallelized: not countable
+     70, Loop unrolled 8 times (completely unrolled)
+     77, Loop not vectorized/parallelized: contains call
+comm_parent_reverse:
+     89, Loop not vectorized/parallelized: contains call
+     95, Loop not vectorized/parallelized: not countable
+    103, Loop not vectorized/parallelized: not countable
+    110, Loop not vectorized/parallelized: contains call
+comm_parent_proc:
+    151, Loop not vectorized/parallelized: not countable
+    157, Loop not vectorized/parallelized: not countable
+    164, Loop not vectorized/parallelized: contains call
+    170, Loop not vectorized/parallelized: not countable
+    191, del_par_list inlined, size=42 (inline) file comm_parent.c (320)
+         324, Loop not vectorized/parallelized: potential early exits
+         330, Loop not vectorized/parallelized: potential early exits
+         332, Loop not vectorized/parallelized: not countable
+         342, Loop not vectorized/parallelized: not countable
+         346, Loop not vectorized/parallelized: not countable
+    196, add_par_list inlined, size=146 (inline) file comm_parent.c (213)
+         219, Loop not vectorized/parallelized: potential early exits
+         224, Loop not fused: no successor loop
+              Loop not vectorized: data dependency
+              Loop unrolled 4 times
+         232, Loop not vectorized: data dependency
+              Loop unrolled 8 times
+         234, Loop not vectorized/parallelized: not countable
+         239, Loop not vectorized: data dependency
+              Loop unrolled 8 times
+         241, Loop not vectorized/parallelized: not countable
+         246, Loop not vectorized: data dependency
+              Loop unrolled 8 times
+         248, Loop not vectorized/parallelized: not countable
+         253, Loop not fused: complex flow graph
+              Loop not vectorized: data dependency
+              Loop unrolled 2 times
+         272, Memory copy idiom, loop replaced by call to __c_mcopy8
+         278, Memory copy idiom, loop replaced by call to __c_mcopy8
+         283, Loop not vectorized/parallelized: not countable
+         294, Loop not vectorized/parallelized: not countable
+         299, Loop not vectorized/parallelized: potential early exits
+    205, Loop not vectorized/parallelized: contains call
+add_par_list:
+    219, Loop not vectorized/parallelized: potential early exits
+    224, Loop not fused: no successor loop
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+    232, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+    234, Loop not vectorized/parallelized: not countable
+    239, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+    241, Loop not vectorized/parallelized: not countable
+    246, Loop not vectorized: data dependency
+         Loop unrolled 8 times
+    248, Loop not vectorized/parallelized: not countable
+    253, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 2 times
+    272, Memory copy idiom, loop replaced by call to __c_mcopy8
+    278, Memory copy idiom, loop replaced by call to __c_mcopy8
+    283, Loop not vectorized/parallelized: not countable
+    294, Loop not vectorized/parallelized: not countable
+    299, Loop not vectorized/parallelized: potential early exits
+del_par_list:
+    324, Loop not vectorized/parallelized: potential early exits
+    330, Loop not vectorized/parallelized: potential early exits
+    332, Loop not vectorized/parallelized: not countable
+    342, Loop not vectorized/parallelized: not countable
+    346, Loop not vectorized/parallelized: not countable
+pgcc -fast -mp -Minfo -c comm_refine.c
+comm_refine:
+     46, Loop not vectorized/parallelized: contains call
+     53, Loop not vectorized/parallelized: not countable
+     63, Loop not vectorized/parallelized: not countable
+     75, Loop not vectorized/parallelized: contains call
+comm_reverse_refine:
+     90, Loop not vectorized/parallelized: contains call
+     97, Loop not vectorized/parallelized: not countable
+    109, Loop not vectorized/parallelized: not countable
+    117, Loop unrolled 8 times (completely unrolled)
+    126, Loop not vectorized/parallelized: contains call
+pgcc -fast -mp -Minfo -c comm_util.c
+add_comm_list:
+     68, Loop not vectorized/parallelized: potential early exits
+     77, Loop not fused: no successor loop
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+     87, Memory copy idiom, loop replaced by call to __c_mcopy4
+     89, Loop not vectorized/parallelized: not countable
+     95, Memory copy idiom, loop replaced by call to __c_mcopy4
+     97, Loop not vectorized/parallelized: not countable
+    103, Memory copy idiom, loop replaced by call to __c_mcopy4
+    105, Loop not vectorized/parallelized: not countable
+    111, Memory copy idiom, loop replaced by call to __c_mcopy4
+    113, Loop not vectorized/parallelized: not countable
+    119, Memory copy idiom, loop replaced by call to __c_mcopy4
+    121, Loop not vectorized/parallelized: not countable
+    126, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+    151, Loop not vectorized/parallelized: not countable
+    157, Loop not vectorized/parallelized: not countable
+    163, Loop not vectorized/parallelized: not countable
+    169, Loop not vectorized/parallelized: not countable
+    175, Loop not vectorized/parallelized: not countable
+    181, Loop not vectorized/parallelized: not countable
+    195, Loop not vectorized/parallelized: not countable
+    203, Loop not vectorized/parallelized: potential early exits
+del_comm_list:
+    261, Loop not vectorized/parallelized: potential early exits
+    268, Loop not vectorized/parallelized: potential early exits
+    274, Loop not vectorized/parallelized: not countable
+    288, Loop not vectorized/parallelized: not countable
+    292, Loop not vectorized/parallelized: not countable
+zero_comm_list:
+    309, Loop unrolled 3 times (completely unrolled)
+check_buff_size:
+    322, Loop unrolled 3 times (completely unrolled)
+update_comm_list:
+    384, Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+    389, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+    403, del_comm_list inlined, size=86 (inline) file comm_util.c (232)
+         261, Loop not vectorized/parallelized: potential early exits
+         268, Loop not vectorized/parallelized: potential early exits
+         274, Loop not vectorized/parallelized: not countable
+         288, Loop not vectorized/parallelized: not countable
+         292, Loop not vectorized/parallelized: not countable
+         381, Loop not vectorized/parallelized: too deeply nested
+    414, del_comm_list inlined, size=86 (inline) file comm_util.c (232)
+         261, Loop not vectorized/parallelized: potential early exits
+         268, Loop not vectorized/parallelized: potential early exits
+         274, Loop not vectorized/parallelized: not countable
+         288, Loop not vectorized/parallelized: not countable
+         292, Loop not vectorized/parallelized: not countable
+    417, add_comm_list inlined, size=260 (inline) file comm_util.c (37)
+          68, Loop not vectorized/parallelized: potential early exits
+          77, Loop not fused: no successor loop
+              Loop not vectorized: data dependency
+              Loop unrolled 4 times
+          87, Memory copy idiom, loop replaced by call to __c_mcopy4
+          89, Loop not vectorized/parallelized: not countable
+          95, Memory copy idiom, loop replaced by call to __c_mcopy4
+          97, Loop not vectorized/parallelized: not countable
+         103, Memory copy idiom, loop replaced by call to __c_mcopy4
+         105, Loop not vectorized/parallelized: not countable
+         111, Memory copy idiom, loop replaced by call to __c_mcopy4
+         113, Loop not vectorized/parallelized: not countable
+         119, Memory copy idiom, loop replaced by call to __c_mcopy4
+         121, Loop not vectorized/parallelized: not countable
+         126, Loop not fused: complex flow graph
+              Loop not vectorized: data dependency
+              Loop unrolled 4 times
+         151, Loop not vectorized/parallelized: not countable
+         157, Loop not vectorized/parallelized: not countable
+         163, Loop not vectorized/parallelized: not countable
+         169, Loop not vectorized/parallelized: not countable
+         175, Loop not vectorized/parallelized: not countable
+         181, Loop not vectorized/parallelized: not countable
+         195, Loop not vectorized/parallelized: not countable
+         203, Loop not vectorized/parallelized: potential early exits
+    423, del_comm_list inlined, size=86 (inline) file comm_util.c (232)
+         261, Loop not vectorized/parallelized: potential early exits
+         268, Loop not vectorized/parallelized: potential early exits
+         274, Loop not vectorized/parallelized: not countable
+         288, Loop not vectorized/parallelized: not countable
+         292, Loop not vectorized/parallelized: not countable
+    426, add_comm_list inlined, size=260 (inline) file comm_util.c (37)
+          68, Loop not vectorized/parallelized: potential early exits
+          77, Loop not fused: no successor loop
+              Loop not vectorized: data dependency
+              Loop unrolled 4 times
+          87, Memory copy idiom, loop replaced by call to __c_mcopy4
+          89, Loop not vectorized/parallelized: not countable
+          95, Memory copy idiom, loop replaced by call to __c_mcopy4
+          97, Loop not vectorized/parallelized: not countable
+         103, Memory copy idiom, loop replaced by call to __c_mcopy4
+         105, Loop not vectorized/parallelized: not countable
+         111, Memory copy idiom, loop replaced by call to __c_mcopy4
+         113, Loop not vectorized/parallelized: not countable
+         119, Memory copy idiom, loop replaced by call to __c_mcopy4
+         121, Loop not vectorized/parallelized: not countable
+         126, Loop not fused: complex flow graph
+              Loop not vectorized: data dependency
+              Loop unrolled 4 times
+         151, Loop not vectorized/parallelized: not countable
+         157, Loop not vectorized/parallelized: not countable
+         163, Loop not vectorized/parallelized: not countable
+         169, Loop not vectorized/parallelized: not countable
+         175, Loop not vectorized/parallelized: not countable
+         181, Loop not vectorized/parallelized: not countable
+         195, Loop not vectorized/parallelized: not countable
+         203, Loop not vectorized/parallelized: potential early exits
+pgcc -fast -mp -Minfo -c driver.c
+driver:
+     62, calc_time_step inlined, size=34 (inline) file driver.c (143)
+         156, Loop not vectorized/parallelized: loop count too small
+         166, Loop unrolled 3 times (completely unrolled)
+     79, Loop not vectorized/parallelized: potential early exits
+    123, calc_time_step inlined, size=34 (inline) file driver.c (143)
+          63, Loop not vectorized/parallelized: too deeply nested
+         156, Loop not vectorized/parallelized: loop count too small
+         166, Loop unrolled 3 times (completely unrolled)
+calc_time_step:
+    156, Loop not vectorized/parallelized: loop count too small
+    166, Loop unrolled 3 times (completely unrolled)
+pgcc -fast -mp -Minfo -c init.c
+init:
+     48, Loop not vectorized/parallelized: not countable
+     57, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+    121, Memory zero idiom, loop replaced by call to __c_mzero4
+    140, Loop not vectorized/parallelized: too deeply nested
+    162, Loop not vectorized: may not be beneficial
+         Unrolled inner loop 8 times
+         Generated a prefetch instruction for the loop
+    167, Loop not fused: function call before adjacent loop
+         Loop unrolled 2 times
+    173, Loop not vectorized/parallelized: contains call
+    199, Loop not vectorized/parallelized: too deeply nested
+    200, Loop not vectorized/parallelized: too deeply nested
+    201, Loop not vectorized/parallelized: too deeply nested
+    202, Loop not vectorized/parallelized: too deeply nested
+    203, Loop not vectorized/parallelized: too deeply nested
+    204, Loop not vectorized/parallelized: too deeply nested
+    216, Loop not vectorized/parallelized: too deeply nested
+    219, Loop not vectorized/parallelized: contains call
+    324, Loop not vectorized/parallelized: contains call
+pgcc -fast -mp -Minfo -c main.c
+main:
+     54, Loop not vectorized/parallelized: contains call
+    144, print_help_message inlined, size=24 (inline) file main.c (298)
+    148, print_help_message inlined, size=24 (inline) file main.c (298)
+    151, check_input inlined, size=43 (inline) file main.c (585)
+    195, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         Loop unrolled 2 times
+         Generated 11 prefetches in scalar loop
+    257, Loop not vectorized/parallelized: not countable
+    275, Loop not fused: function call before adjacent loop
+         Loop not vectorized: may not be beneficial
+         Unrolled inner loop 4 times
+         Generated 10 prefetches in scalar loop
+    276, Loop unrolled 3 times (completely unrolled)
+    288, deallocate inlined, size=39 (inline) file main.c (537)
+         540, Loop not vectorized/parallelized: too deeply nested
+         543, Loop not vectorized/parallelized: contains call
+         566, Loop not vectorized/parallelized: contains call
+allocate:
+    355, Loop not vectorized/parallelized: too deeply nested
+    367, Loop not vectorized/parallelized: contains call
+    383, Loop not fused: function call before adjacent loop
+         Unrolled inner loop 4 times
+         Generated 2 prefetches in scalar loop
+    388, Loop not fused: function call before adjacent loop
+         Unrolled inner loop 4 times
+         Generated 2 prefetches in scalar loop
+    392, Parallel region activated
+    396, Loop not vectorized/parallelized: contains call
+    401, Parallel region terminated
+    412, Loop not vectorized/parallelized: contains call
+deallocate:
+    540, Loop not vectorized/parallelized: too deeply nested
+    543, Loop not vectorized/parallelized: contains call
+    566, Loop not vectorized/parallelized: contains call
+pgcc -fast -mp -Minfo -c move.c
+move:
+     42, Loop not vectorized/parallelized: loop count too small
+         FMA (fused multiply-add) instruction(s) generated
+     52, FMA (fused multiply-add) instruction(s) generated
+check_objects:
+     72, Parallel region activated
+         Parallel loop activated with static block schedule
+         Loop not vectorized/parallelized: contains call
+    119, Barrier
+         Parallel region terminated
+         Loop not vectorized/parallelized: not countable
+    126, Loop unrolled 8 times (completely unrolled)
+check_block:
+    145, Loop not vectorized/parallelized: contains call
+    253, FMA (fused multiply-add) instruction(s) generated
+    262, FMA (fused multiply-add) instruction(s) generated
+    273, FMA (fused multiply-add) instruction(s) generated
+    285, FMA (fused multiply-add) instruction(s) generated
+    298, FMA (fused multiply-add) instruction(s) generated
+    310, FMA (fused multiply-add) instruction(s) generated
+    324, FMA (fused multiply-add) instruction(s) generated
+    338, FMA (fused multiply-add) instruction(s) generated
+    400, FMA (fused multiply-add) instruction(s) generated
+    413, FMA (fused multiply-add) instruction(s) generated
+    421, FMA (fused multiply-add) instruction(s) generated
+    429, FMA (fused multiply-add) instruction(s) generated
+    512, FMA (fused multiply-add) instruction(s) generated
+    525, FMA (fused multiply-add) instruction(s) generated
+    533, FMA (fused multiply-add) instruction(s) generated
+    543, FMA (fused multiply-add) instruction(s) generated
+    555, FMA (fused multiply-add) instruction(s) generated
+    608, FMA (fused multiply-add) instruction(s) generated
+pgcc -fast -mp -Minfo -c pack.c
+pack_block:
+     55, Loop unrolled 6 times (completely unrolled)
+         Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+     58, Loop unrolled 2 times (completely unrolled)
+     59, Loop unrolled 2 times (completely unrolled)
+     62, Loop unrolled 3 times (completely unrolled)
+     65, Loop not vectorized/parallelized: too deeply nested
+     68, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+unpack_block:
+     89, Loop unrolled 6 times (completely unrolled)
+         Loop not fused: different loop trip count
+         Loop not vectorized: data dependency
+     92, Loop unrolled 2 times (completely unrolled)
+     93, Loop unrolled 2 times (completely unrolled)
+     96, Loop unrolled 3 times (completely unrolled)
+     99, Loop not vectorized/parallelized: too deeply nested
+    102, Loop not vectorized: data dependency
+         Loop unrolled 16 times
+         Generated 3 prefetches in scalar loop
+pgcc -fast -mp -Minfo -c plot.c
+plot:
+     51, Loop not vectorized/parallelized: not countable
+     52, Loop not fused: function call before adjacent loop
+         Loop unrolled 4 times
+     58, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+     65, Loop not vectorized/parallelized: contains call
+     82, Loop not vectorized/parallelized: contains call
+     90, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+     94, Loop not vectorized/parallelized: not countable
+pgcc -fast -mp -Minfo -c profile.c
+profile:
+     48, calculate_results inlined, size=124 (inline) file profile.c (1146)
+        1151, Loop not fused: dependence chain to sibling loop
+              Generated vector simd code for the loop
+              Residual loop unrolled 1 times (completely unrolled)
+        1153, Loop unrolled 3 times (completely unrolled)
+        1206, Loop not fused: function call before adjacent loop
+              Generated vector simd code for the loop
+              Residual loop unrolled 1 times (completely unrolled)
+        1208, Loop unrolled 3 times (completely unrolled)
+        1242, Loop not fused: function call before adjacent loop
+              Generated vector simd code for the loop
+              Generated 2 prefetch instructions for the loop
+        1247, Loop not fused: complex flow graph
+              Generated vector simd code for the loop
+              Generated a prefetch instruction for the loop
+     78, Loop not vectorized/parallelized: contains call
+    490, Loop not vectorized/parallelized: contains call
+    623, Loop not vectorized/parallelized: contains call
+    835, Loop not vectorized/parallelized: contains call
+    968, Loop not vectorized/parallelized: contains call
+calculate_results:
+   1151, Loop not fused: dependence chain to sibling loop
+         Generated vector simd code for the loop
+         Residual loop unrolled 1 times (completely unrolled)
+   1153, Loop unrolled 3 times (completely unrolled)
+   1206, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         Residual loop unrolled 1 times (completely unrolled)
+   1208, Loop unrolled 3 times (completely unrolled)
+   1242, Loop not fused: function call before adjacent loop
+         Generated vector simd code for the loop
+         Generated 2 prefetch instructions for the loop
+   1247, Generated vector simd code for the loop
+         Generated a prefetch instruction for the loop
+init_profile:
+   1258, Loop unrolled 3 times (completely unrolled)
+   1317, Loop unrolled 3 times (completely unrolled)
+pgcc -fast -mp -Minfo -c rcb.c
+load_balance:
+     59, Loop not vectorized/parallelized: contains call
+     75, Loop not vectorized/parallelized: not countable
+     81, factor inlined, size=13 (inline) file rcb.c (366)
+         369, Loop not vectorized/parallelized: not countable
+     82, Loop not vectorized/parallelized: contains call
+     84, find_dir inlined, size=37 (inline) file rcb.c (387)
+     96, Loop not vectorized/parallelized: not countable
+     98, Loop not vectorized/parallelized: not countable
+    111, move_dots_back inlined, size=46 (inline) file rcb.c (566)
+         573, Loop not vectorized/parallelized: contains call
+         586, Loop not vectorized/parallelized: not countable
+         596, Loop not vectorized/parallelized: not countable
+exchange:
+    141, Loop not vectorized/parallelized: not countable
+    172, Loop not vectorized/parallelized: potential early exits
+    192, Loop not vectorized/parallelized: potential early exits
+    200, Loop not vectorized/parallelized: not countable
+sort:
+    270, Loop not vectorized/parallelized: not countable
+    273, Loop not vectorized/parallelized: not countable
+    280, Loop not vectorized/parallelized: potential early exits
+    291, Loop not vectorized/parallelized: potential early exits
+    309, Loop not vectorized/parallelized: not countable
+    311, Loop not vectorized/parallelized: not countable
+    317, Loop not vectorized/parallelized: potential early exits
+    326, Invariant if transformation
+         Loop not vectorized/parallelized: not countable
+    339, Loop not vectorized/parallelized: not countable
+    341, Loop not vectorized/parallelized: not countable
+    347, Loop not vectorized/parallelized: potential early exits
+    354, Loop not vectorized/parallelized: not countable
+factor:
+    369, Loop not vectorized/parallelized: not countable
+move_dots:
+    475, Memory zero idiom, loop replaced by call to __c_mzero4
+    479, Loop not vectorized/parallelized: not countable
+    484, Loop not vectorized/parallelized: contains call
+    491, Loop not vectorized/parallelized: contains call
+    499, Loop not vectorized/parallelized: contains call
+    519, Loop not vectorized/parallelized: not countable
+    541, Loop not vectorized/parallelized: potential early exits
+move_dots_back:
+    573, Loop not vectorized/parallelized: contains call
+    586, Loop not vectorized/parallelized: not countable
+    596, Loop not vectorized/parallelized: not countable
+move_blocks:
+    621, Loop not vectorized/parallelized: too deeply nested
+    630, Loop not vectorized/parallelized: potential early exits
+    631, Loop unrolled 2 times (completely unrolled)
+    665, Loop not vectorized/parallelized: contains call
+    697, Loop not vectorized/parallelized: too deeply nested
+    698, exchange inlined, size=117 (inline) file rcb.c (129)
+         141, Loop not vectorized/parallelized: not countable
+         172, Loop not vectorized/parallelized: potential early exits
+         192, Loop not vectorized/parallelized: potential early exits
+         200, Loop not vectorized/parallelized: not countable
+    700, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+    711, Loop not vectorized/parallelized: too deeply nested
+    772, Loop not vectorized/parallelized: contains call
+    799, Loop not vectorized/parallelized: potential early exits
+pgcc -fast -mp -Minfo -c refine.c
+refine:
+     61, Loop not vectorized/parallelized: potential early exits
+     66, reset_all inlined, size=29 (inline) file refine.c (405)
+         410, Loop not vectorized/parallelized: not countable
+         413, Loop unrolled 6 times (completely unrolled)
+         418, Loop not vectorized/parallelized: not countable
+         421, Loop unrolled 8 times (completely unrolled)
+         425, Loop unrolled 8 times (completely unrolled)
+     68, Loop not vectorized/parallelized: not countable
+     90, refine_level inlined, size=153 (inline) file refine.c (229)
+          60, Loop not vectorized/parallelized: too deeply nested
+         243, Loop not vectorized/parallelized: too deeply nested
+         251, Loop not vectorized/parallelized: not countable
+         259, Loop unrolled 8 times (completely unrolled)
+         266, Loop not fused: no successor loop
+              Loop not vectorized: data dependency
+         278, Loop unrolled 8 times (completely unrolled)
+         307, Loop not vectorized: data dependency
+         315, Loop unrolled 8 times (completely unrolled)
+         343, Loop not vectorized/parallelized: too deeply nested
+         357, Loop unrolled 8 times (completely unrolled)
+         374, Loop not vectorized/parallelized: loop count too small
+         375, Loop unrolled 2 times (completely unrolled)
+         395, Loop not fused: function call before adjacent loop
+    117, reset_neighbors inlined, size=12 (inline) file refine.c (435)
+         439, Loop not vectorized/parallelized: not countable
+         441, Loop unrolled 6 times (completely unrolled)
+    187, Loop not vectorized/parallelized: contains call
+refine_level:
+    243, Loop not vectorized/parallelized: too deeply nested
+    251, Loop not vectorized/parallelized: not countable
+    259, Loop unrolled 8 times (completely unrolled)
+    266, Loop not fused: no successor loop
+         Loop not vectorized: data dependency
+    278, Loop unrolled 8 times (completely unrolled)
+    307, Loop not vectorized: data dependency
+    315, Loop unrolled 8 times (completely unrolled)
+    342, Loop not vectorized/parallelized: too deeply nested
+    357, Loop unrolled 8 times (completely unrolled)
+    374, Loop not vectorized/parallelized: loop count too small
+    375, Loop unrolled 2 times (completely unrolled)
+reset_all:
+    410, Loop not vectorized/parallelized: not countable
+    413, Loop unrolled 6 times (completely unrolled)
+    418, Loop not vectorized/parallelized: not countable
+    421, Loop unrolled 8 times (completely unrolled)
+    425, Loop unrolled 8 times (completely unrolled)
+reset_neighbors:
+    439, Loop not vectorized/parallelized: not countable
+    441, Loop unrolled 6 times (completely unrolled)
+redistribute_blocks:
+    460, Loop not vectorized/parallelized: not countable
+    466, Loop not vectorized/parallelized: not countable
+    471, Loop not vectorized/parallelized: not countable
+    480, Loop not vectorized/parallelized: not countable
+    497, Loop not vectorized/parallelized: potential early exits
+    516, Loop not vectorized/parallelized: potential early exits
+    529, Loop not vectorized/parallelized: not countable
+    539, Loop not vectorized/parallelized: not countable
+    541, Loop unrolled 8 times (completely unrolled)
+    554, Loop not vectorized/parallelized: not countable
+    561, Loop not fused: complex flow graph
+         Loop not vectorized: data dependency
+         Loop unrolled 8 times
+    578, Loop not vectorized/parallelized: potential early exits
+    592, Loop not fused: function call before adjacent loop
+         Loop not vectorized: data dependency
+         Loop unrolled 4 times
+pgcc -fast -mp -Minfo -c stencil.c
+stencil_calc:
+     93, Parallel region activated
+     94, Loop not vectorized/parallelized: too deeply nested
+     98, Generated 2 alternate versions of the loop
+         Generated vector simd code for the loop
+         Generated 7 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 7 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 7 prefetch instructions for the loop
+    108, Memory copy idiom, loop replaced by call to __c_mcopy8
+    113, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    117, Parallel region activated
+    118, Loop not vectorized/parallelized: too deeply nested
+    122, Generated 2 alternate versions of the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+    154, Memory copy idiom, loop replaced by call to __c_mcopy8
+    159, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+stencil_0:
+    171, Parallel region activated
+    172, Loop not vectorized/parallelized: too deeply nested
+    174, Loop not vectorized/parallelized: too deeply nested
+    177, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         FMA (fused multiply-add) instruction(s) generated
+    183, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    187, Parallel region activated
+    188, Loop not vectorized/parallelized: too deeply nested
+    192, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         FMA (fused multiply-add) instruction(s) generated
+    200, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    204, Parallel region activated
+    205, Loop not vectorized/parallelized: too deeply nested
+    209, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+         FMA (fused multiply-add) instruction(s) generated
+    219, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    224, Parallel region activated
+    225, Loop not vectorized/parallelized: too deeply nested
+    229, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+         FMA (fused multiply-add) instruction(s) generated
+    238, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    243, Parallel region activated
+    244, Loop not vectorized/parallelized: too deeply nested
+    248, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+    258, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+stencil_x:
+    272, Parallel region activated
+    273, Loop not vectorized/parallelized: too deeply nested
+    275, Loop not vectorized/parallelized: too deeply nested
+    278, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         FMA (fused multiply-add) instruction(s) generated
+    285, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    290, Parallel region activated
+    291, Loop not vectorized/parallelized: too deeply nested
+    295, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+         FMA (fused multiply-add) instruction(s) generated
+    303, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    308, Parallel region activated
+    309, Loop not vectorized/parallelized: too deeply nested
+    313, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+    341, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    346, Parallel region activated
+    347, Loop not vectorized/parallelized: too deeply nested
+    351, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+    379, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    384, Parallel region activated
+    385, Loop not vectorized/parallelized: too deeply nested
+    389, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+    417, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+stencil_y:
+    431, Parallel region activated
+    432, Invariant if transformation
+         Loop not vectorized/parallelized: too deeply nested
+    435, Parallel loop activated with static block schedule
+         Loop not vectorized/parallelized: too deeply nested
+    438, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         FMA (fused multiply-add) instruction(s) generated
+    443, Barrier
+    445, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    450, Parallel region activated
+    451, Loop not vectorized/parallelized: too deeply nested
+    455, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+         FMA (fused multiply-add) instruction(s) generated
+    463, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    468, Parallel region activated
+    469, Loop not vectorized/parallelized: too deeply nested
+    473, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+    501, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    506, Parallel region activated
+    507, Loop not vectorized/parallelized: too deeply nested
+    511, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+    539, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    544, Parallel region activated
+    545, Loop not vectorized/parallelized: too deeply nested
+    549, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+    577, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+stencil_z:
+    592, Parallel region activated
+    593, Loop not vectorized/parallelized: too deeply nested
+    595, Loop not vectorized/parallelized: too deeply nested
+    598, Loop not vectorized: data dependency
+         Loop unrolled 4 times
+         FMA (fused multiply-add) instruction(s) generated
+    606, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    611, Parallel region activated
+    612, Loop not vectorized/parallelized: too deeply nested
+    616, Loop not vectorized: data dependency
+         Loop unrolled 2 times
+         FMA (fused multiply-add) instruction(s) generated
+    624, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    629, Parallel region activated
+    630, Loop not vectorized/parallelized: too deeply nested
+    634, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+    662, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    667, Parallel region activated
+    668, Loop not vectorized/parallelized: too deeply nested
+    672, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+    700, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    705, Parallel region activated
+    706, Loop not vectorized/parallelized: too deeply nested
+    710, Loop not vectorized: data dependency
+         FMA (fused multiply-add) instruction(s) generated
+    738, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+stencil_7:
+    752, Parallel region activated
+    753, Loop not vectorized/parallelized: too deeply nested
+    757, Generated 2 alternate versions of the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         FMA (fused multiply-add) instruction(s) generated
+    775, Memory copy idiom, loop replaced by call to __c_mcopy8
+    779, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    784, Parallel region activated
+    785, Loop not vectorized/parallelized: too deeply nested
+    789, Generated 2 alternate versions of the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         FMA (fused multiply-add) instruction(s) generated
+    807, Memory copy idiom, loop replaced by call to __c_mcopy8
+    811, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    816, Parallel region activated
+    817, Loop not vectorized/parallelized: too deeply nested
+    821, Generated 2 alternate versions of the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         FMA (fused multiply-add) instruction(s) generated
+    839, Memory copy idiom, loop replaced by call to __c_mcopy8
+    843, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    848, Parallel region activated
+    849, Loop not vectorized/parallelized: too deeply nested
+    853, Generated 2 alternate versions of the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         FMA (fused multiply-add) instruction(s) generated
+    871, Memory copy idiom, loop replaced by call to __c_mcopy8
+    875, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+stencil_27:
+    889, Parallel region activated
+    890, Loop not vectorized/parallelized: too deeply nested
+    893, Parallel loop activated with static block schedule
+    895, Generated 2 alternate versions of the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+    924, Barrier
+    926, Memory copy idiom, loop replaced by call to __c_mcopy8
+    930, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    934, Parallel region activated
+    935, Loop not vectorized/parallelized: too deeply nested
+    939, Generated 2 alternate versions of the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+    970, Memory copy idiom, loop replaced by call to __c_mcopy8
+    975, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+    979, Parallel region activated
+    980, Loop not vectorized/parallelized: too deeply nested
+    984, Generated 2 alternate versions of the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+   1015, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1019, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+   1023, Parallel region activated
+   1024, Loop not vectorized/parallelized: too deeply nested
+   1028, Generated 2 alternate versions of the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+         Generated vector simd code for the loop
+         Generated 8 prefetch instructions for the loop
+   1059, Memory copy idiom, loop replaced by call to __c_mcopy8
+   1064, Parallel region terminated
+         FMA (fused multiply-add) instruction(s) generated
+stencil_check:
+   1076, Parallel region activated
+   1077, Loop not vectorized/parallelized: too deeply nested
+   1081, Loop not vectorized: data dependency
+   1097, Parallel region terminated
+pgcc -fast -mp -Minfo -c util.c
+pgcc -L/opt/pgi/linux86-64/2018/mpi/openmpi/lib -o ma.x block.o check_sum.o comm_block.o comm.o comm_parent.o comm_refine.o comm_util.o driver.o init.o main.o move.o pack.o plot.o profile.o rcb.o refine.o stencil.o util.o -fast -mp -Minfo -lm -lmpi

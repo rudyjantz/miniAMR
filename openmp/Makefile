@@ -1,9 +1,12 @@
-CC   = cc
-LD   = cc
-CPPFLAGS = -I.
-CFLAGS = -O3 -fopenmp
-LDFLAGS =
-LDLIBS = -lm -lgomp -lmpi
+.PHONY: all info clean
+
+CC       := pgcc
+LDLIBS   := -lm -lmpi
+OMPFLAGS := -fast -mp
+
+# XXX pgcc doesn't respect LD_LIBRARY_PATH? Need portable solution
+LDFLAGS := -L/opt/pgi/linux86-64/2018/mpi/openmpi/lib
+
 
 EXEC = ma.x
 
@@ -11,16 +14,19 @@ OBJS = block.o check_sum.o comm_block.o comm.o comm_parent.o comm_refine.o \
        comm_util.o driver.o init.o main.o move.o pack.o plot.o profile.o \
        rcb.o refine.o stencil.o util.o
 
+all: $(EXEC)
+
+info: OMPFLAGS := $(OMPFLAGS) -Minfo
+info: all
+
 $(EXEC): $(OBJS)
-	$(LD) $(LDFLAGS) -o $@ $(OBJS) $(LDLIBS)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(OMPFLAGS) $(LDLIBS)
 
 .c.o:
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $<
+	$(CC) $(OMPFLAGS) -c $<
 
 clean:
 	rm -f *.o ma.x
-
-# need dependencies
 
 block.o: block.h proto.h comm.h timer.h
 

@@ -16,7 +16,8 @@ OBJS = block.o check_sum.o comm_block.o comm.o comm_parent.o comm_refine.o \
 
 all: $(EXEC)
 
-info: OMPFLAGS := $(OMPFLAGS) -Minfo
+#info: OMPFLAGS := $(OMPFLAGS) -Minfo=all
+info: OMPFLAGS := $(OMPFLAGS) -Minfo=accel
 info: all
 
 $(EXEC): $(OBJS)

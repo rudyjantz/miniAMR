@@ -3,6 +3,7 @@
 CC       := pgcc
 LDLIBS   := -lm -lmpi
 OMPFLAGS := -fast -mp
+ACCFLAGS := -acc -ta=nvidia
 
 # XXX pgcc doesn't respect LD_LIBRARY_PATH? Need portable solution
 LDFLAGS := -L/opt/pgi/linux86-64/2018/mpi/openmpi/lib
@@ -16,14 +17,17 @@ OBJS = block.o check_sum.o comm_block.o comm.o comm_parent.o comm_refine.o \
 
 all: $(EXEC)
 
-info: OMPFLAGS := $(OMPFLAGS) -Minfo
+info: ACCFLAGS := $(ACCFLAGS) -Minfo=accel
 info: all
 
+infoall: ACCFLAGS := $(ACCFLAGS) -Minfo=all
+infoall: all
+
 $(EXEC): $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(OMPFLAGS) $(LDLIBS)
+	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(ACCFLAGS) $(LDLIBS)
 
 .c.o:
-	$(CC) $(OMPFLAGS) -c $<
+	$(CC) $(ACCFLAGS) -c $<
 
 clean:
 	rm -f *.o ma.x

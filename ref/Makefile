@@ -1,6 +1,6 @@
 CC   = cc
 LD   = cc
-CPPFLAGS = -I.
+CPPFLAGS = -I. -I/usr/lib/openmpi/include
 CFLAGS = -O3
 LDFLAGS =
 LDLIBS = -lm -lmpi

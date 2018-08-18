@@ -1,11 +1,14 @@
 .PHONY: all info clean
 
+# XXX portability
 CC       := pgcc
-LDLIBS   := -lm -lmpi
-OMPFLAGS := -fast -mp
-
-# XXX pgcc doesn't respect LD_LIBRARY_PATH? Need portable solution
 LDFLAGS := -L/opt/pgi/linux86-64/2018/mpi/openmpi/lib
+CFLAGS := -I/opt/pgi/linux86-64/2018/mpi/openmpi-2.1.2/include
+
+LDLIBS   := -lm -lmpi -lopen-pal -lopen-rte -lrdmacm
+OMPFLAGS := -fast -mp
+OMPFLAGS := $(OMPFLAGS) $(CFLAGS)
+
 
 
 EXEC = ma.x

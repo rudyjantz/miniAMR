@@ -2,10 +2,13 @@
 
 # XXX portability
 CC       := pgcc
-LDFLAGS  := -L/opt/pgi/linux86-64/2018/mpi/openmpi/lib
-CFLAGS   := -I/opt/pgi/linux86-64/2018/mpi/openmpi-2.1.2/include
+#LDFLAGS  := -L/opt/pgi/linux86-64/2018/mpi/openmpi/lib
+#CFLAGS   := -I/opt/pgi/linux86-64/2018/mpi/openmpi-2.1.2/include
+LDFLAGS  := -L/usr/lib/openmpi/lib -L/usr/lib/x86_64-linux-gnu
+CFLAGS   := -I/usr/lib/openmpi/include
 
-LDLIBS   := -lm -lmpi -lopen-pal -lopen-rte -lrdmacm
+#LDLIBS   := -lm -lmpi -lopen-pal -lopen-rte -lrdmacm
+LDLIBS   := -lm -lmpi -lopen-pal -lopen-rte -lnuma
 ACCFLAGS := -acc -ta=nvidia
 ACCFLAGS := $(ACCFLAGS) $(CFLAGS)
 

@@ -1,12 +1,14 @@
 .PHONY: all info clean
 
+# XXX portability
 CC       := pgcc
-LDLIBS   := -lm -lmpi
-OMPFLAGS := -fast -mp
-ACCFLAGS := -acc -ta=nvidia
+LDFLAGS  := -L/opt/pgi/linux86-64/2018/mpi/openmpi/lib
+CFLAGS   := -I/opt/pgi/linux86-64/2018/mpi/openmpi-2.1.2/include
 
-# XXX pgcc doesn't respect LD_LIBRARY_PATH? Need portable solution
-LDFLAGS := -L/opt/pgi/linux86-64/2018/mpi/openmpi/lib
+LDLIBS   := -lm -lmpi -lopen-pal -lopen-rte -lrdmacm
+ACCFLAGS := -acc -ta=nvidia
+ACCFLAGS := $(ACCFLAGS) $(CFLAGS)
+
 
 
 EXEC = ma.x
